@@ -1,0 +1,58 @@
+# Função para exibir o menu
+def exibir_menu():
+    print("\n--- Agenda de Contatos ---")
+    print("1. Adicionar contato")
+    print("2. Exibir contatos")
+    print("3. Remover contato")
+    print("4. Sair")
+
+# Função para adicionar um contato
+def adicionar_contato(contatos):
+    nome = input("Digite o nome: ")
+    telefone = input("Digite o telefone: ")
+    email = input("Digite o e-mail: ")
+    contato = {"nome": nome, "telefone": telefone, "email": email}
+    contatos.append(contato)
+    print("Contato adicionado com sucesso!")
+
+# Função para exibir todos os contatos
+def exibir_contatos(contatos):
+    if len(contatos) == 0:
+        print("Nenhum contato na agenda.")
+    else:
+        print("\n--- Lista de Contatos ---")
+        for i, contato in enumerate(contatos):
+            print(f"{i + 1}. Nome: {contato['nome']}, Telefone: {contato['telefone']}, E-mail: {contato['email']}")
+
+# Função para remover um contato
+def remover_contato(contatos):
+    nome = input("Digite o nome do contato a ser removido: ")
+    for contato in contatos:
+        if contato['nome'].lower() == nome.lower():
+            contatos.remove(contato)
+            print("Contato removido com sucesso!")
+            return
+    print("Contato não encontrado.")
+
+# Programa principal
+def main():
+    contatos = []
+    while True:
+        exibir_menu()
+        opcao = input("Escolha uma opção: ")
+
+        if opcao == "1":
+            adicionar_contato(contatos)
+        elif opcao == "2":
+            exibir_contatos(contatos)
+        elif opcao == "3":
+            remover_contato(contatos)
+        elif opcao == "4":
+            print("Saindo da agenda.")
+            break
+        else:
+            print("Opção inválida! Tente novamente.")
+
+# Iniciar o programa
+if __name__ == "__main__":
+    main()
